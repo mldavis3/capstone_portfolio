@@ -1,0 +1,90 @@
+--Michael Davis | T00615872
+--Phase 3
+
+--Create EMPLOYEE Table
+drop table Employee cascade constraints;
+create table Employee(
+	fname	varchar2(30) not null,
+    lname   varchar2(30)  not null,
+	empID	number(5) not null,
+	branchID    number(5),
+    SSN     number(9),
+	primary key (empID),
+    foreign key (branchID) references Branch on delete cascade
+);
+
+--Insert Employees and appropriate info into EMPLOYEE table
+insert into Employee values('Michael', 'Davis', 11132, 12345, 1112233245);
+insert into Employee values('Taylor', 'Lunsford', 32502, 12345, 12587465);
+insert into Employee values('David', 'Cline', 02563, 11123, 23654879);
+insert into Employee values('Jasmine', 'Wilhelm', 65201, 12355, 12587459);
+insert into Employee values('Clark', 'Kent', 25841, 45872, 23698547);
+insert into Employee values('Peter', 'Parker', 72501, 56545, 84569852);
+
+--Create CUSTOMER Table
+drop table Customer cascade constraints;
+create table Customer (
+    fname	varchar2(30) not null,
+    lname   varchar2(30)  not null,
+    custID	number(5) not null,
+	branchID    number(5),
+	primary key (custID),
+    foreign key (branchID) references Branch on delete cascade
+);
+
+--Insert Customers and appropriate info into CUSTOMER table
+insert into Customer values('John', 'Smith', 54879, 12345);
+insert into Customer values('Adam', 'Smith', 58782, 12345);
+insert into Customer values('Allen', 'Cline', 52563, 11123);
+insert into Customer values('John', 'Wilhelm', 62581, 12355);
+insert into Customer values('Clark', 'Michaels', 78945, 45872);
+insert into Customer values('Mary', 'Parker', 35501, 56545);
+
+--Create BRANCH Table
+drop table Branch cascade constraints;
+create table Branch (
+    branchID    number(5),
+    locationName   varchar2(30) not null,
+    primary key (branchID)
+);
+
+--Insert BranchID and location
+insert into Branch values(12345, 'Arkansas');
+insert into Branch values(11123, 'California');
+insert into Branch values(12355, 'Texas');
+insert into Branch values(45872, 'New York');
+insert into Branch values(56545, 'Florida');
+
+--Create Equipment table
+drop table Equipment cascade constraints;
+create table Equipment (
+    equipID    number(5),
+    equipType   varchar2(30) not null,
+    inventory   number(5),
+    primary key (equipID)
+);
+
+insert into Equipment values (00023, 'Network Switch', 46);
+insert into Equipment values (00054, 'CAT 6 Cable', 652);
+insert into Equipment values (00125, 'Laptop', 67);
+insert into Equipment values (00087, 'Desktop', 156);
+insert into Equipment values (00325, 'Server', 15);
+insert into Equipment values (00112, 'Misc Components', 645);
+
+
+drop table Services cascade constraints;
+create table Services (
+    servName    varchar2(30) not null,
+    servID      number(5),
+    servLocation varchar2(30) not null,
+    primary key (servID)
+);
+
+insert into Services values('Server Maintenance', 01235, 'Arkansas');
+insert into Services values('Network Setup', 01485, 'California');
+insert into Services values('Server Maintenance', 01238, 'Texas');
+insert into Services values('Home Automation', 02548, 'New York');
+insert into Services values('Server Configuration', 02938, 'Florida');
+
+
+
